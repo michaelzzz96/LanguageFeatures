@@ -11,10 +11,16 @@ using System.Threading.Tasks;
 namespace LanguageFeatures.Controllers{
     public class HomeController : Controller
     {
+        public ViewResult Index()
+        {
+            var products = new[] {
+            new { Name = "Kayak", Price = 275M },
+            new { Name = "Lifejacket", Price = 48.95M },
+            new { Name = "Soccer ball", Price = 19.50M },
+            new { Name = "Corner flag", Price = 34.95M }
+            };
 
-        public async Task<ViewResult> Index(){
-            long? length = await MyAsyncMethods.GetPageLength();
-            return View(new string[] { $"Length: {length}" });
+            return View(products.Select(p => $"Name: {p.Name}, Price: {p.Price}"));
         }
     }
 }
