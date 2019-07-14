@@ -6,19 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using LanguageFeatures.Models;
 
-namespace LanguageFeatures.Controllers
-{
-   
-    public class HomeController : Controller
-    {
+namespace LanguageFeatures.Controllers{
+    public class HomeController : Controller{
 
-        bool FilterByPrice(Product p)
-        {
-            return (p?.Price ?? 0) >= 20;
-        }
-
-        public ViewResult Index()
-        {
+        public ViewResult Index() {
 
             Product[] productArray = {
             new Product {Name = "Kayak", Price = 275M},
@@ -28,15 +19,13 @@ namespace LanguageFeatures.Controllers
 
             };
 
-            Func<Product, bool> nameFilter = delegate (Product prod) {
-                return prod?.Name?[0] == 'S';
-            };
+         
 
             decimal priceFilterTotal = productArray
-            .Filter(FilterByPrice)
+            .Filter(p => (p?.Price ?? 0) >= 20)
             .TotalPrices();
             decimal nameFilterTotal = productArray
-            .Filter(nameFilter)
+            .Filter(p => p?.Name?[0] == 'S')
             .TotalPrices();
 
             return View("Index", new string[] {
