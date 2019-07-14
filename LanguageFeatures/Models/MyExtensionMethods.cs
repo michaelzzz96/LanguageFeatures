@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace LanguageFeatures.Models
 {
     public static class MyExtensionMethods {
+
         public static decimal TotalPrices(this ShoppingCart cartParam)
         {
             decimal total = 0;
