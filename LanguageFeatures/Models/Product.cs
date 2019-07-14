@@ -5,11 +5,17 @@ using System.Threading.Tasks;
 
 namespace LanguageFeatures.Models{
     public class Product {
-    
+
+        public Product(bool stock = true)
+        {
+            InStock = stock;
+        }
+
     public string Name { get; set; }
     public string Category { get; set; } = "Watersports";
     public decimal? Price { get; set; }
     public Product Related { get; set; }
+    public bool InStock { get; } = true;
 
 
     public static Product[] GetProducts(){
@@ -20,7 +26,7 @@ namespace LanguageFeatures.Models{
                 Price = 275M
             };
 
-            Product lifeJacket = new Product{
+            Product lifeJacket = new Product(false){
                 Name = "Lifejacket",
                 Price = 48.95M
             };
