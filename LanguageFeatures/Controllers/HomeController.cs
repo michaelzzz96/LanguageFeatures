@@ -23,8 +23,11 @@ namespace LanguageFeatures.Controllers
 
             };
 
-            decimal arrayTotal = productArray.FilterByPrice(20).TotalPrices();
-            return View("Index", new string[] { $"Array Total: {arrayTotal:C2}" });
+            decimal priceFilterTotal = productArray.FilterByPrice(20).TotalPrices();
+            decimal nameFilterTotal = productArray.FilterByName('S').TotalPrices();
+            return View("Index", new string[] {
+$"Price Total: {priceFilterTotal:C2}",
+$"Name Total: {nameFilterTotal:C2}" });
         }
     }
 }
